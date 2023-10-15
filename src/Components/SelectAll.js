@@ -9,7 +9,7 @@ const SelectAll = () => {
     program_topic: "all",
     difficulty: "all",
   });
-  const [filterdData,setFilteredData] = useState([]);
+  const [filterdData, setFilteredData] = useState([]);
 
   useEffect(() => {
     // fetch("https://localhost:5001/api/MST_Program")
@@ -48,7 +48,9 @@ const SelectAll = () => {
               {program.program_name}
             </Link>
           </td>
-          <td style={{textTransform:"capitalize"}}>{program.program_topic}</td>
+          <td style={{ textTransform: "capitalize" }}>
+            {program.program_topic}
+          </td>
           <td>
             <Link to={program.program_link} target="_blank">
               <ion-icon name="link-outline"></ion-icon>
@@ -79,13 +81,13 @@ const SelectAll = () => {
 
   const topicsSet = new Set();
 
-  programObj.forEach((obj)=>{
+  programObj.forEach((obj) => {
     topicsSet.add(obj.program_topic);
-  })
+  });
 
   let topicsArray = [];
-  
-  topicsSet.forEach(element => {
+
+  topicsSet.forEach((element) => {
     topicsArray.push(element);
   });
 
@@ -93,6 +95,23 @@ const SelectAll = () => {
     return (
       <>
         <option>{topic}</option>
+      </>
+    );
+  });
+
+  const allTopics = topicsArray.map((topic) => {
+    return (
+      <>
+        <div className="text-center">
+          <div className="programPageTopics">
+            <Link
+              className="text-decoration-none cardNumber"
+              to={`/SelectAllTopic/SelectByTopicName/${topic}`}
+            >
+              <div className="cardName"style={{textTransform:"capitalize",letterSpacing:"1px"}}>{topic}</div>
+            </Link>
+          </div>
+        </div>
       </>
     );
   });
@@ -116,6 +135,12 @@ const SelectAll = () => {
 
   return (
     <div className="selectAll container-sm darkTheme p-5">
+      <div>
+        <div className="selectAll container p-5 darkTheme">
+          {/* <h1>Topics</h1> */}
+          <div className="text-center d-flex gap-5 flex-wrap">{allTopics}</div>
+        </div>
+      </div>
       <div className="d-flex justify-content-between">
         <div>
           <h1>Programs</h1>
@@ -128,19 +153,30 @@ const SelectAll = () => {
               // console.warn(filterObj.program_topic + " " + e.target.value);
               setFilterObj({ ...filterObj, program_topic: e.target.value });
               // setTimeout(() => {
-                if( e.target.value === "all" && filterObj.difficulty === "all" ){
-                  setFilteredData(programObj);
-                }
-                else if( e.target.value === "all" ){
-                  setFilteredData(programObj.filter((program)=>program.difficulty === filterObj.difficulty));
-                }
-                else if( filterObj.difficulty === "all" ){
-                  setFilteredData(programObj.filter((program)=>program.program_topic === e.target.value));  
-                }
-                else{
-                  setFilteredData(programObj.filter((program)=>program.program_topic === e.target.value && program.difficulty === filterObj.difficulty));
-                }
-                // console.warn(filterObj.program_topic);
+              if (e.target.value === "all" && filterObj.difficulty === "all") {
+                setFilteredData(programObj);
+              } else if (e.target.value === "all") {
+                setFilteredData(
+                  programObj.filter(
+                    (program) => program.difficulty === filterObj.difficulty
+                  )
+                );
+              } else if (filterObj.difficulty === "all") {
+                setFilteredData(
+                  programObj.filter(
+                    (program) => program.program_topic === e.target.value
+                  )
+                );
+              } else {
+                setFilteredData(
+                  programObj.filter(
+                    (program) =>
+                      program.program_topic === e.target.value &&
+                      program.difficulty === filterObj.difficulty
+                  )
+                );
+              }
+              // console.warn(filterObj.program_topic);
               // }, 3000);
               // console.warn(filterdData);
               // fetchUsingFilter(e.target.value, filterObj.difficulty);
@@ -157,17 +193,32 @@ const SelectAll = () => {
                 ...filterObj,
                 difficulty: e.target.value,
               });
-              if( e.target.value === "all" && filterObj.program_topic === "all" ){
+              if (
+                e.target.value === "all" &&
+                filterObj.program_topic === "all"
+              ) {
                 setFilteredData(programObj);
-              }
-              else if( e.target.value === "all" ){
-                setFilteredData(programObj.filter((program)=>program.program_topic === filterObj.program_topic));  
-              }
-              else if( filterObj.program_topic === "all" ){
-                setFilteredData(programObj.filter((program)=>program.difficulty === e.target.value));
-              }
-              else{
-                setFilteredData(programObj.filter((program)=>program.difficulty === e.target.value && program.program_topic === filterObj.program_topic));
+              } else if (e.target.value === "all") {
+                setFilteredData(
+                  programObj.filter(
+                    (program) =>
+                      program.program_topic === filterObj.program_topic
+                  )
+                );
+              } else if (filterObj.program_topic === "all") {
+                setFilteredData(
+                  programObj.filter(
+                    (program) => program.difficulty === e.target.value
+                  )
+                );
+              } else {
+                setFilteredData(
+                  programObj.filter(
+                    (program) =>
+                      program.difficulty === e.target.value &&
+                      program.program_topic === filterObj.program_topic
+                  )
+                );
               }
               // fetchUsingFilter(filterObj.program_topic, e.target.value);
             }}

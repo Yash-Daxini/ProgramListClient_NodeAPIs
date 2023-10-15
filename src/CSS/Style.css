@@ -96,6 +96,19 @@ table {
 .selectAll table{
     margin-top: 20px;
 }
+.programPageTopics{
+    background-color: #333;
+    border-radius: 40px;
+    padding: 10px;
+    transition: 0.7s;
+}
+.programPageTopics:hover{
+    background:#03a9f4;
+}
+.programPageTopics:hover .cardNumber{
+    color:#fff;
+    font-weight:900;
+}
 .cardBox{
     margin-left: 40px ;
     position:relative;

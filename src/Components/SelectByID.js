@@ -50,16 +50,18 @@ const SelectByID = () => {
       <div className="my-5 d-flex justify-content-center align-items-center">
         <button className="btn btn-outline-primary mx-5">
           <Link
-            to={programObj.program_Link}
+            to={programObj.program_link}
             className="text-decoration-none text-light"
+            target={"_blank"}
           >
             Solve Here{" "}
           </Link>
         </button>
         <button className="btn btn-outline-primary mx-5">
           <Link
-            to={programObj.program_solutionLink}
+            to={programObj.solution_link}
             className="text-decoration-none text-light"
+            target={"_blank"}
           >
             See Solution{" "}
           </Link>

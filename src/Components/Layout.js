@@ -15,9 +15,9 @@ const Layout = () => {
                             <li class="nav-item mx-3">
                                 <Link class="nav-link active" aria-current="page" style={{color:"#fff"}} to="/SelectAll">Programs</Link>
                             </li>
-                            <li class="nav-item mx-3">
+                            {/* <li class="nav-item mx-3">
                                 <Link class="nav-link" to="/SelectAllTopic" style={{color:"#fff"}}>Topics</Link>
-                            </li>
+                            </li> */}
                         </ul>
                     </div>
                 </div>
